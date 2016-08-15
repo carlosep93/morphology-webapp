@@ -1,0 +1,38 @@
+<html>
+	<body>
+		<div>
+			<h2>Titulo</h2>	
+		</div>			
+		<div>
+			<form id='myForm' action="" method="GET">
+				<b>Entrada:</b> <input type="text" name="entrada">
+				<button id="btn-submit" type="submit">Enviar</button>
+			</form>	
+		</div>
+		<div id="result"><p></p> </div>
+
+	</body>		
+</html>
+
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+
+<script>
+	$('document').ready(function(){	
+		$('#btn-submit').click(function(event){
+			event.preventDefault();	
+			console.log('Entra');	
+			$.ajax({
+				url: '/translate',
+				type: 'post',
+				data: $('form#myForm').serialize(),
+				success: function(data) {
+							$('#result p').text('It works');
+						}
+			});
+		});
+	});
+
+</script>
